@@ -10,112 +10,107 @@ using video.Data;
 
 namespace video.Controllers
 {
-    public class PeliculasController : Controller
+    public class CategoriasController : Controller
     {
         private videoEntities db = new videoEntities();
 
-        // GET: Peliculas
+        // GET: Categorias
         public ActionResult Index()
         {
-            var peliculas = db.Peliculas.Include(p => p.Categorias);
-            return View(peliculas.ToList());
+            return View(db.Categorias.ToList());
         }
 
-        // GET: Peliculas/Details/5
+        // GET: Categorias/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Peliculas peliculas = db.Peliculas.Find(id);
-            if (peliculas == null)
+            Categorias categorias = db.Categorias.Find(id);
+            if (categorias == null)
             {
                 return HttpNotFound();
             }
-            return View(peliculas);
+            return View(categorias);
         }
 
-        // GET: Peliculas/Create
+        // GET: Categorias/Create
         public ActionResult Create()
         {
-            ViewBag.CategoriaId = new SelectList(db.Categorias, "Id", "nombre");
             return View();
         }
 
-        // POST: Peliculas/Create
+        // POST: Categorias/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,nombre,Codigo,Descripcion,CategoriaId")] Peliculas peliculas)
+        public ActionResult Create([Bind(Include = "Id,nombre")] Categorias categorias)
         {
             if (ModelState.IsValid)
             {
-                db.Peliculas.Add(peliculas);
+                db.Categorias.Add(categorias);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoriaId = new SelectList(db.Categorias, "Id", "nombre", peliculas.CategoriaId);
-            return View(peliculas);
+            return View(categorias);
         }
 
-        // GET: Peliculas/Edit/5
+        // GET: Categorias/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Peliculas peliculas = db.Peliculas.Find(id);
-            if (peliculas == null)
+            Categorias categorias = db.Categorias.Find(id);
+            if (categorias == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoriaId = new SelectList(db.Categorias, "Id", "nombre", peliculas.CategoriaId);
-            return View(peliculas);
+            return View(categorias);
         }
 
-        // POST: Peliculas/Edit/5
+        // POST: Categorias/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,nombre,Codigo,Descripcion,CategoriaId")] Peliculas peliculas)
+        public ActionResult Edit([Bind(Include = "Id,nombre")] Categorias categorias)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(peliculas).State = EntityState.Modified;
+                db.Entry(categorias).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoriaId = new SelectList(db.Categorias, "Id", "nombre", peliculas.CategoriaId);
-            return View(peliculas);
+            return View(categorias);
         }
 
-        // GET: Peliculas/Delete/5
+        // GET: Categorias/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Peliculas peliculas = db.Peliculas.Find(id);
-            if (peliculas == null)
+            Categorias categorias = db.Categorias.Find(id);
+            if (categorias == null)
             {
                 return HttpNotFound();
             }
-            return View(peliculas);
+            return View(categorias);
         }
 
-        // POST: Peliculas/Delete/5
+        // POST: Categorias/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Peliculas peliculas = db.Peliculas.Find(id);
-            db.Peliculas.Remove(peliculas);
+            Categorias categorias = db.Categorias.Find(id);
+            db.Categorias.Remove(categorias);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

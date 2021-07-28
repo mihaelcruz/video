@@ -12,14 +12,18 @@ namespace video.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Peliculas
+    public partial class Categorias
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Categorias()
+        {
+            this.Peliculas = new HashSet<Peliculas>();
+        }
+    
         public int Id { get; set; }
         public string nombre { get; set; }
-        public string Codigo { get; set; }
-        public string Descripcion { get; set; }
-        public Nullable<int> CategoriaId { get; set; }
     
-        public virtual Categorias Categorias { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Peliculas> Peliculas { get; set; }
     }
 }

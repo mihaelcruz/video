@@ -25,6 +25,7 @@ namespace video.Data
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Categorias> Categorias { get; set; }
         public virtual DbSet<Peliculas> Peliculas { get; set; }
     }
 }

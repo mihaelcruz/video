@@ -1,27 +1,14 @@
 ﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    int sumatoria = 0;
 }
 
-<h2>Ejercicio1</h2>
-@foreach (var nume in ViewBag.num)
-{
-    sumatoria = sumatoria + nume;
-    <p>@nume</p>
-}
-@{ int promedio = sumatoria / 10;}
-<p>El dato maximo es: @ViewBag.num[9]</p>
-<p>El dato minimo es: @ViewBag.num[0]</p>
-<p>El promedio es: @promedio</p>
-<table border="1">
-@for (var i = 0; i < 20; i++)
-{   <tr>
-    <td>@i</td>
-    <td>contenido</td>
-</tr>
-    
-        }
+<h2>Ejercicio</h2>
 
-    </table>
+<ul class="nav navbar-nav">
+    <li>@Html.ActionLink("Ejercicio 1", "Ejercicio1", "Ejercicios")</li>
+    <li>@Html.ActionLink("Ejercicio 2", "Ejercicio2", "Ejercicios")</li>
+    <li>@Html.ActionLink("Ejercicio 3", "Ejercicio3", "Ejercicios")</li>
+    <li>@Html.ActionLink("Ejercicio 4", "Ejercicio4", "Ejercicios")</li>
+</ul>
 

@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="videoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nchar" MaxLength="64" />
+        </EntityType>
         <EntityType Name="Peliculas">
           <Key>
             <PropertyRef Name="Id" />
@@ -13,15 +20,41 @@
           <Property Name="nombre" Type="nchar" MaxLength="64" />
           <Property Name="Codigo" Type="nchar" MaxLength="10" />
           <Property Name="Descripcion" Type="nchar" MaxLength="132" />
+          <Property Name="CategoriaId" Type="int" />
         </EntityType>
+        <Association Name="FK__Peliculas__Categ__35BCFE0A">
+          <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
+          <End Role="Peliculas" Type="Self.Peliculas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Peliculas">
+              <PropertyRef Name="CategoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="videoModelStoreContainer">
+          <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Peliculas" EntityType="Self.Peliculas" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Peliculas__Categ__35BCFE0A" Association="Self.FK__Peliculas__Categ__35BCFE0A">
+            <End Role="Categorias" EntitySet="Categorias" />
+            <End Role="Peliculas" EntitySet="Peliculas" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="videoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="64" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Peliculas" Relationship="Self.FK__Peliculas__Categ__35BCFE0A" FromRole="Categorias" ToRole="Peliculas" />
+        </EntityType>
         <EntityType Name="Peliculas">
           <Key>
             <PropertyRef Name="Id" />
@@ -30,9 +63,28 @@
           <Property Name="nombre" Type="String" MaxLength="64" FixedLength="true" Unicode="true" />
           <Property Name="Codigo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Descripcion" Type="String" MaxLength="132" FixedLength="true" Unicode="true" />
+          <Property Name="CategoriaId" Type="Int32" />
+          <NavigationProperty Name="Categorias" Relationship="Self.FK__Peliculas__Categ__35BCFE0A" FromRole="Peliculas" ToRole="Categorias" />
         </EntityType>
+        <Association Name="FK__Peliculas__Categ__35BCFE0A">
+          <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
+          <End Role="Peliculas" Type="Self.Peliculas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Peliculas">
+              <PropertyRef Name="CategoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="videoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categorias" EntityType="Self.Categorias" />
           <EntitySet Name="Peliculas" EntityType="Self.Peliculas" />
+          <AssociationSet Name="FK__Peliculas__Categ__35BCFE0A" Association="Self.FK__Peliculas__Categ__35BCFE0A">
+            <End Role="Categorias" EntitySet="Categorias" />
+            <End Role="Peliculas" EntitySet="Peliculas" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -40,6 +92,14 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="videoModelStoreContainer" CdmEntityContainer="videoEntities">
+          <EntitySetMapping Name="Categorias">
+            <EntityTypeMapping TypeName="videoModel.Categorias">
+              <MappingFragment StoreEntitySet="Categorias">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Peliculas">
             <EntityTypeMapping TypeName="videoModel.Peliculas">
               <MappingFragment StoreEntitySet="Peliculas">
@@ -47,6 +107,7 @@
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
