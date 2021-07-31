@@ -19,6 +19,7 @@ namespace video.Data
         public string Codigo { get; set; }
         public string Descripcion { get; set; }
         public Nullable<int> CategoriaId { get; set; }
+        public byte[] imagen { get; set; }
     
         public virtual Categorias Categorias { get; set; }
     }

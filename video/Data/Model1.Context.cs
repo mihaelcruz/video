@@ -13,10 +13,10 @@ namespace video.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class videoEntities : DbContext
+    public partial class videoEntities2 : DbContext
     {
-        public videoEntities()
-            : base("name=videoEntities")
+        public videoEntities2()
+            : base("name=videoEntities2")
         {
         }
     

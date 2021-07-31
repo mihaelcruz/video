@@ -5,12 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Peliculas</h2>
+<h2>Index</h2>
 
 <p>
-    <div class="btn btn-success glyphicon glyphicon-plus">
-        @Html.ActionLink(" ", "Create")
-    </div>
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -44,9 +42,10 @@
             @Html.DisplayFor(modelItem => item.Categorias.nombre)
         </td>
         <td>
-            @Html.ActionLink(" ", "Edit", new { id = item.Id},new { @class= "btn btn-warning glyphicon glyphicon-edit" }) 
-            @Html.ActionLink(" ", "Details", new { id=item.Id }, new { @class = "btn btn-info glyphicon glyphicon-file" }) 
-            @Html.ActionLink(" ", "Delete", new { id=item.Id }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
+
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

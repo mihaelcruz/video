@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Ejercicio3";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ejercicio 1 del examen</h2>
+<form action="" method="post">
+    <input type="text" name="n" value="" />
+    <input type="submit" name="Generar" value="Generar" />
+</form>
+<h3>TABLA</h3>
+@Html.Raw(ViewBag.tabla);

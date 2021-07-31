@@ -36,6 +36,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.imagen)
+        </dt>
+
+        <dd>
+            <img src="@Url.Action("getImage", "Peliculas",new{id=Model.Id})" />
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Categorias.nombre)
         </dt>
 

@@ -224,6 +224,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="recursos\img\cine.jpg" />
+    <Content Include="recursos\img\cruella.jpg" />
+    <Content Include="recursos\img\despierta_furia.jpg" />
+    <Content Include="recursos\img\purga_infinita.jpg" />
+    <Content Include="recursos\img\spirit.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Data\Model1.edmx">
@@ -279,6 +284,9 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Ejercicios\Index.cshtml" />
+    <Content Include="Views\Ejercicios\Ejercicio1.cshtml" />
+    <Content Include="Views\Ejercicios\Ejercicio2.cshtml" />
+    <Content Include="Views\Ejercicios\Ejercicio3.cshtml" />
     <Content Include="Views\Categorias\Create.cshtml" />
     <Content Include="Views\Categorias\Delete.cshtml" />
     <Content Include="Views\Categorias\Details.cshtml" />
@@ -289,8 +297,7 @@
     <Content Include="Views\Peliculas\Details.cshtml" />
     <Content Include="Views\Peliculas\Edit.cshtml" />
     <Content Include="Views\Peliculas\Index.cshtml" />
-    <Content Include="Views\Ejercicios\Ejercicio1.cshtml" />
-    <Content Include="Views\Ejercicios\Ejercicio2.cshtml" />
+    <Content Include="Views\Peliculas\Subir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

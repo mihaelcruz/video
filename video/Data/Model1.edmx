@@ -21,6 +21,7 @@
           <Property Name="Codigo" Type="nchar" MaxLength="10" />
           <Property Name="Descripcion" Type="nchar" MaxLength="132" />
           <Property Name="CategoriaId" Type="int" />
+          <Property Name="imagen" Type="image" />
         </EntityType>
         <Association Name="FK__Peliculas__Categ__35BCFE0A">
           <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
@@ -64,6 +65,7 @@
           <Property Name="Codigo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Descripcion" Type="String" MaxLength="132" FixedLength="true" Unicode="true" />
           <Property Name="CategoriaId" Type="Int32" />
+          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Categorias" Relationship="Self.FK__Peliculas__Categ__35BCFE0A" FromRole="Peliculas" ToRole="Categorias" />
         </EntityType>
         <Association Name="FK__Peliculas__Categ__35BCFE0A">
@@ -78,7 +80,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="videoEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="videoEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categorias" EntityType="Self.Categorias" />
           <EntitySet Name="Peliculas" EntityType="Self.Peliculas" />
           <AssociationSet Name="FK__Peliculas__Categ__35BCFE0A" Association="Self.FK__Peliculas__Categ__35BCFE0A">
@@ -91,7 +93,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="videoModelStoreContainer" CdmEntityContainer="videoEntities">
+        <EntityContainerMapping StorageEntityContainer="videoModelStoreContainer" CdmEntityContainer="videoEntities2">
           <EntitySetMapping Name="Categorias">
             <EntityTypeMapping TypeName="videoModel.Categorias">
               <MappingFragment StoreEntitySet="Categorias">
@@ -108,6 +110,7 @@
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

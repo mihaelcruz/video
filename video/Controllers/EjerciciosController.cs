@@ -33,17 +33,28 @@ namespace video.Controllers
         {
             //int[] array = {1,2,3,5,7,11,13};
             int longitud = Int16.Parse(n);
-            if (longitud<=20 && longitud>=0)
+            if (longitud<=50 && longitud>=0)
             {
                 ViewBag.resultado = "correcto";
-                int[] array = new int[longitud];
+                int[] array = new int[longitud+1];
                 string cad = "";
-                int aux = 2;
-                for (int i = 0; i < longitud; i++)
+                int pares = 2;
+                int multiplos = 3;
+
+                for (int i = 1; i <= longitud; i++)
                 {
-                    array[i] =aux;
+                    if (i % 2 == 0)
+                    {
+                        array[i] = multiplos;
+                        multiplos = multiplos + 3;
+                    }
+                    else {
+
+                        array[i] = pares;
+                        pares = pares + 2;
+                        
+                    }
                     cad = cad + array[i] + " ";
-                    aux=aux+2;
                 }
                 ViewBag.resultado = cad;
             }
@@ -54,5 +65,32 @@ namespace video.Controllers
             
             return View();
         }
+
+        public ActionResult Ejercicio3()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Ejercicio3(string n)
+        {
+            int num = Int16.Parse(n);
+            string tabla="";
+            if (num <= 10 && num >= 1)
+            {
+                for (int i = 1; i <= 10; i++)
+                { 
+                    tabla = tabla + "<tr><td>" + num + "</td><td>x</td><td>" + i + "</td><td>" + num * i + "</td></tr>";
+                }
+                ViewBag.tabla = "<table border='1'>"+tabla+"</table>";
+            }
+            else {
+                ViewBag.tabla = "No corresponde al rango";
+            }
+                return View();
+        }
+
+
+
     }
 }

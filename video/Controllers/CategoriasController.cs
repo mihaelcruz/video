@@ -12,7 +12,7 @@ namespace video.Controllers
 {
     public class CategoriasController : Controller
     {
-        private videoEntities db = new videoEntities();
+        private videoEntities2 db = new videoEntities2();
 
         // GET: Categorias
         public ActionResult Index()
